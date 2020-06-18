@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import MethodTag from "./components/tags";
-import { Stack, Flex, Text, Input, Textarea } from "@chakra-ui/core";
+import { Stack, Flex, Text, Input, Textarea, Checkbox } from "@chakra-ui/core";
 import Header from "./components/Header/header";
 
 const CurlBuilder = () => {
-  const [methodName, setMethod] = React.useState("");
-  const [url, setUrl] = React.useState("");
-  const [requestBody, setRequestBody] = React.useState("");
-  const [curl, setCurl] = React.useState("curl");
+  const [methodName, setMethod] = useState("");
+  const [url, setUrl] = useState("");
+  const [requestBody, setRequestBody] = useState("");
+  const [curl, setCurl] = useState("curl");
+  const [jsonContent, setJsonContent] = useState(
+    "-H 'Content-type: application/json'"
+  );
+  const [verbose, setVerbose] = useState("-v");
 
   useEffect(() => {
     handleCurlChange(methodName, url, requestBody);
-  }, [url, methodName, requestBody]);
+  }, [url, methodName, requestBody, jsonContent, verbose]);
 
   const handleMethodChange = event => {
     setMethod(`${event.target.name}`);
@@ -19,6 +23,22 @@ const CurlBuilder = () => {
 
   const handleChangeURL = event => {
     setUrl(event.target.value);
+  };
+
+  const handleVerboseChange = event => {
+    if (event.target.checked) {
+      setVerbose("-v");
+    } else {
+      setVerbose("");
+    }
+  };
+
+  const handleJsonContentChange = event => {
+    if (event.target.checked) {
+      setJsonContent("-H 'Content-type: application/json'");
+    } else {
+      setJsonContent("");
+    }
   };
 
   const handleChangeRequestBody = event => {
@@ -32,7 +52,8 @@ const CurlBuilder = () => {
     if (body) {
       body = `-d ${body}`;
     }
-    setCurl(`curl ${method} ${body} ${url}`);
+
+    setCurl(`curl ${verbose} ${method} ${body} ${jsonContent} ${url}`);
   };
 
   return (
@@ -75,6 +96,25 @@ const CurlBuilder = () => {
           size="lg"
           onClick={handleMethodChange}
         />
+      </Stack>
+
+      <Stack spacing={10} isInline m="3">
+        <Checkbox
+          size="md"
+          variantColor="green"
+          defaultIsChecked
+          onChange={handleJsonContentChange}
+        >
+          Content-Type JSON
+        </Checkbox>
+        <Checkbox
+          size="md"
+          variantColor="orange"
+          defaultIsChecked
+          onClick={handleVerboseChange}
+        >
+          Verbose
+        </Checkbox>
       </Stack>
 
       <Input
