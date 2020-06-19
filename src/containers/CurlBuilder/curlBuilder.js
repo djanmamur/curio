@@ -86,7 +86,7 @@ const CurlBuilder = () => {
         />
         <MethodTag
           label="PATCH"
-          color="gray"
+          color="green"
           size="lg"
           onClick={handleMethodChange}
         />
