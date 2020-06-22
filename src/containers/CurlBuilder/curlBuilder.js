@@ -17,15 +17,15 @@ const CurlBuilder = () => {
     handleCurlChange(methodName, url, requestBody);
   }, [url, methodName, requestBody, jsonContent, verbose]);
 
-  const handleMethodChange = event => {
+  const handleMethodChange = (event) => {
     setMethod(`${event.target.name}`);
   };
 
-  const handleChangeURL = event => {
+  const handleChangeURL = (event) => {
     setUrl(event.target.value);
   };
 
-  const handleVerboseChange = event => {
+  const handleVerboseChange = (event) => {
     if (event.target.checked) {
       setVerbose("-v");
     } else {
@@ -33,7 +33,7 @@ const CurlBuilder = () => {
     }
   };
 
-  const handleJsonContentChange = event => {
+  const handleJsonContentChange = (event) => {
     if (event.target.checked) {
       setJsonContent("-H 'Content-type: application/json'");
     } else {
@@ -41,7 +41,7 @@ const CurlBuilder = () => {
     }
   };
 
-  const handleChangeRequestBody = event => {
+  const handleChangeRequestBody = (event) => {
     setRequestBody(`${event.target.value}`);
   };
 
@@ -64,8 +64,7 @@ const CurlBuilder = () => {
       backgroundColor="cyan"
       top={0}
     >
-      <Header></Header>
-      <Stack spacing={8} isInline textAlign="center">
+      <Stack spacing={8} isInline textAlign="center" marginTop="6">
         <MethodTag
           label="POST"
           color="red"
@@ -120,7 +119,7 @@ const CurlBuilder = () => {
       <Input
         placeholder="Enter URL"
         margin="4"
-        width="500px"
+        width="600px"
         value={url}
         onChange={handleChangeURL}
       />
@@ -128,12 +127,12 @@ const CurlBuilder = () => {
       <Textarea
         placeholder="Enter request body"
         margin="4"
-        width="500px"
+        width="600px"
         value={requestBody}
         onChange={handleChangeRequestBody}
       />
       <Text>Your CURL:</Text>
-      <Textarea margin="4" width="500px" value={curl} />
+      <Textarea margin="4" width="600px" value={curl} />
     </Flex>
   );
 };

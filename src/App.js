@@ -1,8 +1,18 @@
 import React from "react";
 import "./App.css";
 import CurlBuilder from "./containers/CurlBuilder/curlBuilder";
+import JsonValidator from "./containers/JSONValidator/jsonValidator";
 import theme from "./theme";
-import { Flex, ThemeProvider } from "@chakra-ui/core";
+import {
+  Flex,
+  ThemeProvider,
+  Stack,
+  Tab,
+  Tabs,
+  TabList,
+  TabPanel,
+  TabPanels,
+} from "@chakra-ui/core";
 
 function App() {
   return (
@@ -10,11 +20,31 @@ function App() {
       <Flex
         flexDirection="column"
         flex={1}
+        justify="center"
+        alignContent="center"
         align="center"
-        justify="space-between"
       >
-        <Flex flex={1} align="flex-start">
-          <CurlBuilder />
+        <Flex>
+          <Stack isInline>
+            <Tabs isFitted width="640px">
+              <TabList role="tablist">
+                <Tab _selected={{ color: "white", bg: "blue.500" }}>
+                  CURL Builder
+                </Tab>
+                <Tab _selected={{ color: "white", bg: "green.400" }}>
+                  JSON Validator
+                </Tab>
+              </TabList>
+              <TabPanels m="20px">
+                <TabPanel>
+                  <CurlBuilder />
+                </TabPanel>
+                <TabPanel>
+                  <JsonValidator />
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
+          </Stack>
         </Flex>
       </Flex>
     </ThemeProvider>
