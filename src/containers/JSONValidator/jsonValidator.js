@@ -1,14 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {
-  Stack,
-  Flex,
-  Text,
-  Button,
-  Input,
-  Textarea,
-  Checkbox,
-  useToast,
-} from "@chakra-ui/core";
+import React, { useState } from "react";
+import { Stack, Flex, Button, Textarea, useToast } from "@chakra-ui/core";
 
 const JsonValidator = () => {
   const toast = useToast();

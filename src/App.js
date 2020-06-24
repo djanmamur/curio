@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import CurlBuilder from "./containers/CurlBuilder/curlBuilder";
 import JsonValidator from "./containers/JSONValidator/jsonValidator";
+import XmlValidator from "./containers/XMLValidator/xmlValidator";
 import theme from "./theme";
 import {
   Flex,
@@ -34,6 +35,9 @@ function App() {
                 <Tab _selected={{ color: "white", bg: "green.400" }}>
                   JSON Validator
                 </Tab>
+                <Tab _selected={{ color: "white", bg: "orange.400" }}>
+                  XML Validator
+                </Tab>
               </TabList>
               <TabPanels m="20px">
                 <TabPanel>
@@ -41,6 +45,9 @@ function App() {
                 </TabPanel>
                 <TabPanel>
                   <JsonValidator />
+                </TabPanel>
+                <TabPanel>
+                  <XmlValidator />
                 </TabPanel>
               </TabPanels>
             </Tabs>
